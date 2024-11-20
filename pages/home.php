@@ -84,6 +84,7 @@
          <!-- electrical template top nav hero section html end  -->
 
          <?php include('about.php'); ?>
+        
 
 
         <!-- electrical template top nav hero section js links  -->
