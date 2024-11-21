@@ -33,7 +33,6 @@
     <body>
 
 
-             <!-- electrical template top nav hero section html  -->
         <!-- Navbar & Hero Start -->
        
         <!-- Navbar & Hero End -->
@@ -81,7 +80,7 @@
         </div>
         <!-- Carousel End -->
 
-         <!-- electrical template top nav hero section html end  -->
+   
 
          <?php include('about.php'); ?>
         

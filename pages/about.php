@@ -260,7 +260,7 @@
 }</style>
 
 
- <!-- dairy milky template about us section start -->
+
         
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -286,7 +286,8 @@
                     </div>
                 </div>
                 <div class="col-lg-6 wow fadeIn" data-wow-delay="0.5s">
-                    <p class="section-title bg-white text-start  pe-3" style="color: #CB9DF0; font-size: 20px; font-weight: bold;">About Us</p>
+                    <p class="section-title bg-white text-start  pe-3" style="
+    color: #CB9DF0;font-weight: bolder;font-size:xx-large;">About Us</p>
                     <h1 class="mb-4">Discover Our Flowers & Indoor Plants</h1>
                     <p class="mb-4">Welcome to our shop! We specialize in beautiful flowers,and stunning indoor plants. Whether you're looking to brighten your home or celebrate a special moment, we’re here to help.</p>
                     <div class="row g-5 pt-2 mb-5">
@@ -328,7 +329,8 @@
         <div class="container">
             <div class="row g-5 align-items-center">
                 <div class="col-lg-6 wow fadeInUp" data-wow-delay="0.1s">
-                    <p class="section-title bg-white text-start pe-3" style="color: #CB9DF0; font-size: 20px; font-weight: bold;">Why Us!</p>
+                    <p class="section-title bg-white text-start pe-3" style="
+    color: #CB9DF0;font-weight: bolder;font-size:xx-large;">Why Us!</p>
                     <h1 class="mb-4">Few Reasons Why People Choosing Us!</h1>
                     <p><i class="fa fa-check  me-3"style="color: #CB9DF0"></i>Fresh Flowers & Plants: Vibrant blooms and healthy indoor plants.</p>
                     <p><i class="fa fa-check  me-3"style="color: #CB9DF0"></i>Custom Designs: Tailored arrangements for any occasion.</p>
@@ -404,6 +406,153 @@
 
     <?php include('banner.php'); ?>
 
+  <!-- Team Start -->
+<div class="container-xxl py-5">
+    <div class="container px-lg-5">
+        <div class="section-title position-relative text-center mb-5 pb-2 wow fadeInUp" data-wow-delay="0.1s">
+            <h6 class="position-relative d-inline ps-4" style="color: #CB9DF0;font-weight: bolder;font-size:xx-large;">Our Team</h6>
+            <h2 class="mt-2">Meet The Team Behind Flora</h2>
+        </div>
+        <div class="row g-4">
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.1s">
+                <div class="team-item">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 d-flex flex-column align-items-center mt-4 pt-5" style="width: 75px;">
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <img class="img-fluid rounded w-100" src="../assets/images/team1.png" alt="">
+                    </div>
+                    <div class="px-4 py-3">
+                        <h5 class="fw-bold m-0">James Smith</h5>
+                        <small>Founder & CEO</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.3s">
+                <div class="team-item">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 d-flex flex-column align-items-center mt-4 pt-5" style="width: 75px;">
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <img class="img-fluid rounded w-100" src="..\assets\images\team2.webp" alt="">
+                    </div>
+                    <div class="px-4 py-3">
+                        <h5 class="fw-bold m-0">Sophia Johnson</h5>
+                        <small>Product Manager</small>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4 col-md-6 wow fadeInUp" data-wow-delay="0.6s">
+                <div class="team-item">
+                    <div class="d-flex">
+                        <div class="flex-shrink-0 d-flex flex-column align-items-center mt-4 pt-5" style="width: 75px;">
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                        <img class="img-fluid rounded w-100" src="..\assets\images\team3.jpg" alt="">
+                    </div>
+                    <div class="px-4 py-3">
+                        <h5 class="fw-bold m-0">Lily Davis</h5>
+                        <small>Lead Designer</small>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Team End -->
+
+
+
+
+        <!-- Footer Start -->
+        <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
+            <div class="container py-5 px-lg-5">
+                <div class="row g-5">
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Get In Touch</h5>
+                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
+                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
+                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
+                        <div class="d-flex pt-2">
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
+                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Popular Link</h5>
+                        <a class="btn btn-link" href="">About Us</a>
+                        <a class="btn btn-link" href="">Contact Us</a>
+                        <a class="btn btn-link" href="">Privacy Policy</a>
+                        <a class="btn btn-link" href="">Terms & Condition</a>
+                        <a class="btn btn-link" href="">Career</a>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Project Gallery</h5>
+                        <div class="row g-2">
+                            <div class="col-4">
+                                <img class="img-fluid" src="img/portfolio-1.jpg" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="img/portfolio-2.jpg" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="img/portfolio-3.jpg" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="img/portfolio-4.jpg" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="img/portfolio-5.jpg" alt="Image">
+                            </div>
+                            <div class="col-4">
+                                <img class="img-fluid" src="img/portfolio-6.jpg" alt="Image">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-md-6 col-lg-3">
+                        <h5 class="text-white mb-4">Newsletter</h5>
+                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
+                        <div class="position-relative w-100 mt-3">
+                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
+                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="container px-lg-5">
+                <div class="copyright">
+                    <div class="row">
+                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
+                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
+							
+							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
+							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+                        </div>
+                        <div class="col-md-6 text-center text-md-end">
+                            <div class="footer-menu">
+                                <a href="">Home</a>
+                                <a href="">Cookies</a>
+                                <a href="">Help</a>
+                                <a href="">FQAs</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <!-- Footer End -->
 
 <script>document.getElementById("exploreButton").addEventListener("click", function () {
   document.getElementById("whyus").scrollIntoView({ behavior: "smooth" });
@@ -460,5 +609,5 @@ document.addEventListener("DOMContentLoaded", function () {
 });
 
 </script>
-         <!-- dairy milky template about us section end --> </body>
+         </body>
  </html>
