@@ -292,11 +292,9 @@
                     <div class="row g-5 pt-2 mb-5">
                         <div class="col-sm-6">
                             <h5 class="mb-3">Dedicated Services</h5>
-                            
                             <span>We offer carefully selected bouquets,and indoor plants to add beauty and joy to your life.</span>
                         </div>
                         <div class="col-sm-6">
-                            <img class="img-fluid mb-4" src="">
                             <h5 class="mb-3">Natural Elegance</h5>
                             <span>Our products are sustainably sourced to bring a touch of nature’s charm into your home and relationships.</span>
                         </div>
@@ -404,7 +402,7 @@
 
     <!-- Features End -->
 
-    <?php include('banner.html'); ?>
+    <?php include('banner.php'); ?>
 
 
 <script>document.getElementById("exploreButton").addEventListener("click", function () {
