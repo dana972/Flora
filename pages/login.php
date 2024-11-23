@@ -1,3 +1,52 @@
+<?php
+// Include the database connection
+require_once '../config/config.php';
+
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Check if the username and password are set in the POST request
+    if (isset($_POST['username']) && isset($_POST['password'])) {
+        // Get and sanitize form data
+        $username = mysqli_real_escape_string($conn, $_POST['username']);
+        $password = mysqli_real_escape_string($conn, $_POST['password']);
+
+        // Prepare the SQL query to check if the user exists
+        $sql = "SELECT * FROM users WHERE username = '$username' OR email = '$username'"; 
+
+        // Execute the query
+        $result = mysqli_query($conn, $sql);
+        
+        // Check if the user exists
+        if (mysqli_num_rows($result) > 0) {
+            // Fetch the user data
+            $user = mysqli_fetch_assoc($result);
+
+            // Verify the password
+            if (password_verify($password, $user['password'])) {
+                // Start a session and store user info for login
+                session_start();
+                $_SESSION['user_id'] = $user['id'];
+                $_SESSION['username'] = $user['username'];
+
+                // Redirect to the dashboard or home page
+                header("Location: ./home.php");
+                exit(); // Always call exit after a header redirect
+            } else {
+                // If password doesn't match
+                echo "Invalid password!";
+            }
+        } else {
+            // If no user is found
+            echo "No user found with that username or email!";
+        }
+    } else {
+        // If username or password is missing
+        echo "Please fill in both username and password!";
+    }
+}
+?>
+
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -303,25 +352,23 @@ body {
         <span class="bg-anmiate2"></span>
         <div class="form_box login">
             <h2 class="anmiation" style="--i:0">login</h2>
-            <form action="#">
-                <div class="input_box anmiation" style="--i:1">
+            <form method="POST" action="login.php">
+    <div class="input_box anmiation" style="--i:1">
+        <input type="text" name="username" required>
+        <label>Username</label>
+        <i class='bx bxs-user'></i>
+    </div>
+    <div class="input_box anmiation" style="--i:2">
+        <input type="password" name="password" required>
+        <label>Password</label>
+        <i class='bx bxs-lock-alt'></i>
+    </div>
+    <button type="submit" class="btn anmiation" style="--i:3">Login</button>
+    <div class="logreg-link anmiation" style="--i:4">
+        <p>Don't have an account? <a href="#" class="register_link">Sign up</a></p>
+    </div>
+</form>
 
-                    <input type="text" required>
-                    <label >Username</label>
-                    <i class='bx bxs-user'></i>
-                </div>
-                <div class="input_box anmiation" style="--i:2">
-                    <input type="password" required>
-                    <label >password</label>
-                    <i class='bx bxs-lock-alt'></i>
-                </div>
-                <button type="submit" class="btn anmiation" style="--i:3">login</button>
-                <div class="logreg-link anmiation" style="--i:4">
-                    <p>Don't have an account? <a href="#" class="register_link">Sign up</a>
-                
-                    </p>
-                </div>
-            </form>
         </div>
         <div class="info-text login">
             <h2 class="anmiation" style="--i:0;">welcome back</h2>
