@@ -4,6 +4,28 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    <style>/* Base styles for the icons */
+.icon-btn i {
+    font-size: 1.3rem; /* Makes the icons larger */
+    color: #CB9DF0; /* Default icon color */
+    transition: color 0.3s ease, transform 0.3s ease; /* Smooth color change and hover effect */
+}
+
+/* Hover effect for icons */
+.icon-btn:hover i {
+    color: #F0C1E1; /* Changes color on hover */
+    transform: scale(1.2); /* Slightly enlarges the icon on hover */
+}
+
+/* Search button styling */
+.search-bar + .btn i {
+    color: #CB9DF0; /* Matches your palette */
+}
+
+.search-bar + .btn:hover i {
+    color: #F0C1E1; /* Lighter color on hover for search icon */
+}
+</style>
 </head>
 <body>
 <div class="container-fluid header-top sticky-top">
@@ -72,16 +94,24 @@
                                         </div>
                                     </div>
                                     <a href="contact.html" class="nav-item nav-link">Contact</a>
-                                    <div class="nav-btn ps-3">
-                                        <!-- Search Bar Start -->
-                                <form class="d-flex">
-                                    <input class="form-control me-2 search-bar" type="search" placeholder="Search for flowers or plants..." aria-label="Search">
-                                    <button class="btn " type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                </form>
-                                    
-                                    </div>
+                                    <div class="nav-btn ps-3 d-flex align-items-center">
+    <!-- Search Bar Start -->
+    <form class="d-flex">
+        <input class="form-control me-2 search-bar" type="search" placeholder="Search for flowers or plants..." aria-label="Search">
+        <button class="btn me-3" type="submit">
+            <i class="fas fa-search"></i>
+        </button>
+    </form>
+    <!-- User Icon -->
+    <a href="../pages/login.php" class="btn icon-btn me-3" title="Login">
+        <i class="fas fa-user"></i>
+    </a>
+    <!-- Shopping Basket Icon -->
+    <a href="cart.html" class="btn icon-btn" title="Cart">
+        <i class="fas fa-shopping-basket"></i>
+    </a>
+</div>
+
                                 </div>
                             </div>
                         </nav>
