@@ -3,10 +3,71 @@
  <!DOCTYPE html>
  <html lang="en">
  <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+ <!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="utf-8">
+        <title>Flora-Flowers shop</title>
+        <meta content="width=device-width, initial-scale=1.0" name="viewport">
+        <meta content="" name="keywords">
+        <meta content="" name="description">
+
+        <!-- Google Web Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Edu+TAS+Beginner:wght@400..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+        <!-- Icon Font Stylesheet -->
+        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
+
+        <!-- Libraries Stylesheet -->
+        <link rel="stylesheet" href="..\assets\lib\animate\animate.min.css"/>
+        <link href="..\assets\lib\owlcarousel\assets\owl.carousel.min.css" rel="stylesheet">
+        
+
+
+        <!-- Customized Bootstrap Stylesheet -->
+        <link href="..\assets\css\NavHerobootstrap.min.css" rel="stylesheet">
+
+        <!-- Template Stylesheet -->
+        <link href="..\assets\css\styleNavHero.css" rel="stylesheet">
+    
+
     <style>
+      
+/*** Testimonial Start ***/
+.testimonial .testimonial-carousel {
+    position: relative;
+}
+
+.testimonial .testimonial-carousel .owl-dots {
+    margin-top: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.testimonial .testimonial-carousel .owl-dot {
+    position: relative;
+    display: inline-block;
+    margin: 0 5px;
+    width: 15px;
+    height: 15px;
+    background: var(--bs-light);
+    border: 1px solid #CB9DF0;
+    border-radius: 10px;
+    transition: 0.5s;
+}
+
+.testimonial .testimonial-carousel .owl-dot.active {
+    width: 40px;
+    background: #CB9DF0;
+}
+.testimonial .testimonial-carousel .testimonial-item {
+  height: 300px; /* Set a fixed height */}
+/*** Testimonial End ***/
     .plant-button {
   position: relative;
   padding: 13px 35px;
@@ -260,7 +321,8 @@
 }</style>
 
 
-
+<body>
+  
         
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -470,89 +532,75 @@
 </div>
 <!-- Team End -->
 
-
-
-
-        <!-- Footer Start -->
-        <div class="container-fluid bg-primary text-light footer mt-5 pt-5 wow fadeIn" data-wow-delay="0.1s">
-            <div class="container py-5 px-lg-5">
-                <div class="row g-5">
-                    <div class="col-md-6 col-lg-3">
-                        <h5 class="text-white mb-4">Get In Touch</h5>
-                        <p><i class="fa fa-map-marker-alt me-3"></i>123 Street, New York, USA</p>
-                        <p><i class="fa fa-phone-alt me-3"></i>+012 345 67890</p>
-                        <p><i class="fa fa-envelope me-3"></i>info@example.com</p>
-                        <div class="d-flex pt-2">
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-twitter"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-facebook-f"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-youtube"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-instagram"></i></a>
-                            <a class="btn btn-outline-light btn-social" href=""><i class="fab fa-linkedin-in"></i></a>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h5 class="text-white mb-4">Popular Link</h5>
-                        <a class="btn btn-link" href="">About Us</a>
-                        <a class="btn btn-link" href="">Contact Us</a>
-                        <a class="btn btn-link" href="">Privacy Policy</a>
-                        <a class="btn btn-link" href="">Terms & Condition</a>
-                        <a class="btn btn-link" href="">Career</a>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h5 class="text-white mb-4">Project Gallery</h5>
-                        <div class="row g-2">
-                            <div class="col-4">
-                                <img class="img-fluid" src="img/portfolio-1.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="img/portfolio-2.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="img/portfolio-3.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="img/portfolio-4.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="img/portfolio-5.jpg" alt="Image">
-                            </div>
-                            <div class="col-4">
-                                <img class="img-fluid" src="img/portfolio-6.jpg" alt="Image">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-6 col-lg-3">
-                        <h5 class="text-white mb-4">Newsletter</h5>
-                        <p>Lorem ipsum dolor sit amet elit. Phasellus nec pretium mi. Curabitur facilisis ornare velit non vulpu</p>
-                        <div class="position-relative w-100 mt-3">
-                            <input class="form-control border-0 rounded-pill w-100 ps-4 pe-5" type="text" placeholder="Your Email" style="height: 48px;">
-                            <button type="button" class="btn shadow-none position-absolute top-0 end-0 mt-1 me-2"><i class="fa fa-paper-plane text-primary fs-4"></i></button>
-                        </div>
-                    </div>
+<!-- Flora Reviews Start -->
+<div class="container-fluid testimonial bg-light py-5">
+    <div class="container py-5">
+        <div class="row g-4 align-items-center">
+            <div class="col-xl-4 wow fadeInLeft" data-wow-delay="0.1s">
+                <div class="h-100 rounded">
+                    <h4  style="color: #CB9DF0;font-weight: bolder;font-size:xx-large;">Flora Reviews</h4>
+                    <h1 class="display-4 mb-4">What Our Customers Say</h1>
+                    <p class="mb-4">Discover what our customers love about our flowers and plants. Their feedback inspires us to grow and provide the best for your spaces.</p>
+                    <a class="btn rounded-pill text-white py-3 px-5" href="#" style="background-color: #CB9DF0;">See All Reviews <i class="fas fa-arrow-right ms-2"></i></a>
                 </div>
             </div>
-            <div class="container px-lg-5">
-                <div class="copyright">
-                    <div class="row">
-                        <div class="col-md-6 text-center text-md-start mb-3 mb-md-0">
-                            &copy; <a class="border-bottom" href="#">Your Site Name</a>, All Right Reserved. 
-							
-							<!--/*** This template is free as long as you keep the footer author’s credit link/attribution link/backlink. If you'd like to use the template without the footer author’s credit link/attribution link/backlink, you can purchase the Credit Removal License from "https://htmlcodex.com/credit-removal". Thank you for your support. ***/-->
-							Designed By <a class="border-bottom" href="https://htmlcodex.com">HTML Codex</a>
+            <div class="col-xl-8">
+                <div class="testimonial-carousel owl-carousel wow fadeInUp" data-wow-delay="0.1s">
+                    <div class="testimonial-item  rounded p-4 wow fadeInUp" data-wow-delay="0.3s" style="background-color: #FFF9BF;">
+                        <div class="d-flex">
+                            <div><i class="fas fa-quote-left fa-3x  me-3" style="color: #CB9DF0"></i></div>
+                            <p class="mt-4 text-dark">"The flowers I ordered were stunning and lasted for weeks! The care tips provided were so helpful. Highly recommend their service!"</p>
                         </div>
-                        <div class="col-md-6 text-center text-md-end">
-                            <div class="footer-menu">
-                                <a href="">Home</a>
-                                <a href="">Cookies</a>
-                                <a href="">Help</a>
-                                <a href="">FQAs</a>
+                        <div class="d-flex justify-content-end">
+                            <div class="my-auto text-end">
+                                <h5>Emily R.</h5>
+                                <p class="mb-0">Plant Enthusiast</p>
+                            </div>
+                            <div class="bg-white rounded-circle ms-3">
+                                <img src="../assets/images/testimonial-1.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item  rounded p-4 wow fadeInUp" data-wow-delay="0.5s" style="background-color: #FFF9BF;">
+                        <div class="d-flex">
+                            <div><i class="fas fa-quote-left fa-3x  me-3" style="color: #CB9DF0"></i></div>
+                            <p class="mt-4 text-dark">"I bought an indoor plant for my office, and it's been thriving ever since. The team helped me pick the perfect one for my space."</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="my-auto text-end">
+                                <h5>James L.</h5>
+                                <p class="mb-0">Office Manager</p>
+                            </div>
+                            <div class="bg-white rounded-circle ms-3">
+                                <img src="../assets/images/testimonial-3.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="testimonial-item  rounded p-4 wow fadeInUp" data-wow-delay="0.7s"style="background-color: #FFF9BF;">
+                        <div class="d-flex">
+                            <div><i class="fas fa-quote-left fa-3x  me-3"style="color: #CB9DF0"></i></div>
+                            <p class="mt-4 text-dark">"The delivery was on time, and the flowers were fresh and vibrant. It made a beautiful gift for my friend!"</p>
+                        </div>
+                        <div class="d-flex justify-content-end">
+                            <div class="my-auto text-end">
+                                <h5>Sarah K.</h5>
+                                <p class="mb-0">Happy Customer</p>
+                            </div>
+                            <div class="bg-white rounded-circle ms-3">
+                                <img src="../assets/images/testimonial-2.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <!-- Footer End -->
+    </div>
+</div>
+<!-- Flora Reviews End -->
+
+
+
+
 
 <script>document.getElementById("exploreButton").addEventListener("click", function () {
   document.getElementById("whyus").scrollIntoView({ behavior: "smooth" });
@@ -607,6 +655,41 @@ document.addEventListener("DOMContentLoaded", function () {
     observer.observe(counter);
   });
 });
+
+ // testimonial carousel
+ $(".testimonial-carousel").owlCarousel({
+        autoplay: true,
+        smartSpeed: 1500,
+        center: false,
+        dots: true,
+        loop: true,
+        margin: 25,
+        nav : false,
+        navText : [
+            '<i class="bi bi-arrow-left"></i>',
+            '<i class="bi bi-arrow-right"></i>'
+        ],
+        responsiveClass: true,
+        responsive: {
+            0:{
+                items:1
+            },
+            576:{
+                items:1
+            },
+            768:{
+                items:2
+            },
+            992:{
+                items:2
+            },
+            1200:{
+                items:2
+            }
+        }
+    });
+
+
 
 </script>
          </body>

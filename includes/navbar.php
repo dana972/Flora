@@ -80,19 +80,10 @@
                             </button>
                             <div class="collapse navbar-collapse" id="navbarCollapse">
                                 <div class="navbar-nav mx-0 mx-lg-auto bg-white">
-                                    <a href="index.html" class="nav-item nav-link active">Home</a>
-                                    <a href="about.html" class="nav-item nav-link">About</a>
-                                    <a href="service.html" class="nav-item nav-link">Services</a>
-                                    <div class="nav-item dropdown">
-                                        <a href="#" class="nav-link" data-bs-toggle="dropdown">
-                                            <span class="dropdown-toggle">Products</span>
-                                        </a>
-                                        <div class="dropdown-menu">
-                                            <a href="project.html" class="dropdown-item">Bouquets </a>
-                                            <a href="team.html" class="dropdown-item">Indoor Plants</a>
-                                            
-                                        </div>
-                                    </div>
+                                    <a href="../pages/home.php" class="nav-item nav-link active">Home</a>
+                                    <a href="../pages/about.php" class="nav-item nav-link">About</a>
+                                    <a href="../pages/banner.php" class="nav-item nav-link">Services</a>
+                                    <a href="../pages/product.php" class="nav-item nav-link">Products</a>
                                     <a href="contact.html" class="nav-item nav-link">Contact</a>
                                     <div class="nav-btn ps-3 d-flex align-items-center">
     <!-- Search Bar Start -->
@@ -107,7 +98,7 @@
         <i class="fas fa-user"></i>
     </a>
     <!-- Shopping Basket Icon -->
-    <a href="cart.html" class="btn icon-btn" title="Cart">
+    <a href="../pages/login.php" class="btn icon-btn" title="Cart">
         <i class="fas fa-shopping-basket"></i>
     </a>
 </div>
