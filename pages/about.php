@@ -1,73 +1,141 @@
- 
- 
- <!DOCTYPE html>
- <html lang="en">
- <head>
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
-
-    <head>
-        <meta charset="utf-8">
-        <title>Flora-Flowers shop</title>
-        <meta content="width=device-width, initial-scale=1.0" name="viewport">
-        <meta content="" name="keywords">
-        <meta content="" name="description">
-
-        <!-- Google Web Fonts -->
-        <link rel="preconnect" href="https://fonts.googleapis.com">
-        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-        <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Edu+TAS+Beginner:wght@400..700&family=Jost:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
-
-        <!-- Icon Font Stylesheet -->
-        <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.4/css/all.css"/>
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.4.1/font/bootstrap-icons.css" rel="stylesheet">
-
-        <!-- Libraries Stylesheet -->
-        <link rel="stylesheet" href="..\assets\lib\animate\animate.min.css"/>
-        <link href="..\assets\lib\owlcarousel\assets\owl.carousel.min.css" rel="stylesheet">
-        
-
-
-        <!-- Customized Bootstrap Stylesheet -->
-        <link href="..\assets\css\NavHerobootstrap.min.css" rel="stylesheet">
-
-        <!-- Template Stylesheet -->
-        <link href="..\assets\css\styleNavHero.css" rel="stylesheet">
-    
-
-    <style>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>        /*** Attractions Start ***/
+            .attractions {
+                position: relative;
+                overflow: hidden;
+            }
+            
+            .attractions::after {
+                content: "";
+                width: 100%;
+                height: 70%;
+                position: absolute;
+                overflow: hidden;
+                top: 0;
+                left: 0;
+                background: linear-gradient(rgba(0, 0, 0, .7), rgba(0, 0, 0, .7)), url(assets/images/bannerbg.jpg) center center no-repeat;
+                background-size: cover;
+                z-index: -2;
+                animation-name: attraction-image-zoom;
+                animation-duration: 10s;
+                animation-delay: 1s;
+                animation-iteration-count: infinite;
+                animation-direction: alternate;
+                transition: 1s;
+            }
+            
+            @keyframes attraction-image-zoom {
+                0%  {width: 100%;}
+            
+                25% {width: 115%;}
+            
+                50% {width: 130%;}
+            
+                75% {width: 120%;}
+            
+                100% {width: 100%;}
+            }
+            
+            .attractions .attractions-section {
+                position: relative;
+                z-index: 3;
+            }
+            
+            .attractions .attractions-item {
+                position: relative;
+                border-radius: 10px;
+                transition: 0.5s;
+                z-index: 1;
+            }
+            
+            .attractions .attractions-item::after {
+                content: "";
+                position: absolute;
+                width: 100%;
+                height: 0;
+                top: 0;
+                left: 0;
+                border-radius: 10px;
+                background: rgba(0, 0, 0, .7);
+                transition: 0.5s;
+                z-index: 2;
+            }
+            
+            .attractions .attractions-item:hover:after {
+                height: 100%;
+            }
+            
+            .attractions .attractions-item .attractions-name {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 50%;
+                left: 50%;
+                transform: translate(-50%, -50%);
+                border-radius: 10px;
+                color: #CB9DF0;
+                font-size: 24px;
+                font-weight: 600;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                transition: 0.5s;
+                z-index: 3;
+                opacity: 0;
+            }
+            
+            .attractions .attractions-item:hover .attractions-name {
+                opacity: 1;
+            }
+            
+            .attractions-carousel .owl-stage-outer {
+                margin-top: 58px;
+            }
+            
+            .attractions .owl-nav .owl-prev {
+                position: absolute;
+                top: -58px;
+                left: 0;
+                background: #CB9DF0;
+                color: var(--bs-white);
+                padding: 6px 35px;
+                border-radius: 30px;
+                transition: 0.5s;
+            }
+            
+            .attractions .owl-nav .owl-prev:hover {
+                background: #F0C1E1;
+                color: #CB9DF0;
+            }
+            
+            .attractions .owl-nav .owl-next {
+                position: absolute;
+                top: -58px;
+                right: 0;
+                background: #CB9DF0;
+                color: var(--bs-white);
+                padding: 6px 35px;
+                border-radius: 30px;
+                transition: 0.5s;
+            }
+            
+            .attractions .owl-nav .owl-next:hover {
+                background: #F0C1E1;
+                color: #CB9DF0;
+            }
+            .attractions-item img {
+                height: 300px; /* Set the desired height */
+                object-fit: cover; /* Ensures the image maintains its aspect ratio and fills the container */
+            }
+            
+            /*** Attractions End ***/
       
-/*** Testimonial Start ***/
-.testimonial .testimonial-carousel {
-    position: relative;
-}
 
-.testimonial .testimonial-carousel .owl-dots {
-    margin-top: 30px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
-
-.testimonial .testimonial-carousel .owl-dot {
-    position: relative;
-    display: inline-block;
-    margin: 0 5px;
-    width: 15px;
-    height: 15px;
-    background: var(--bs-light);
-    border: 1px solid #CB9DF0;
-    border-radius: 10px;
-    transition: 0.5s;
-}
-
-.testimonial .testimonial-carousel .owl-dot.active {
-    width: 40px;
-    background: #CB9DF0;
-}
-.testimonial .testimonial-carousel .testimonial-item {
-  height: 300px; /* Set a fixed height */}
-/*** Testimonial End ***/
     .plant-button {
   position: relative;
   padding: 13px 35px;
@@ -319,10 +387,8 @@
 .about-experience.rounded {
     border-radius: 0.5rem !important;
 }</style>
-
-
+</head>
 <body>
-  
         
     <!-- About Start -->
     <div class="container-xxl py-5">
@@ -337,13 +403,13 @@
                             </div>
                         </div>
                         <div class="col-6 wow fadeIn" data-wow-delay="0.1s">
-                            <img class="img-fluid rounded" src="..\assets\images\about2.jpg">
+                            <img class="img-fluid rounded" src="assets\images\about2.jpg">
                         </div>
                         <div class="col-6 wow fadeIn" data-wow-delay="0.3s">
-                            <img class="img-fluid rounded" src="..\assets\images\about3.jpg">
+                            <img class="img-fluid rounded" src="assets\images\about3.jpg">
                         </div>
                         <div class="col-6 wow fadeIn" data-wow-delay="0.5s">
-                            <img class="img-fluid rounded" src="..\assets\images\about1.jpg">
+                            <img class="img-fluid rounded" src="assets\images\about1.jpg">
                         </div>
                     </div>
                 </div>
@@ -466,7 +532,6 @@
 
     <!-- Features End -->
 
-    <?php include('banner.php'); ?>
 
   <!-- Team Start -->
 <div class="container-xxl py-5">
@@ -485,7 +550,7 @@
                             <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-instagram"></i></a>
                             <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                        <img class="img-fluid rounded w-100" src="../assets/images/team1.png" alt="">
+                        <img class="img-fluid rounded w-100" src="assets/images/team1.png" alt="">
                     </div>
                     <div class="px-4 py-3">
                         <h5 class="fw-bold m-0">James Smith</h5>
@@ -502,7 +567,7 @@
                             <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-instagram"></i></a>
                             <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                        <img class="img-fluid rounded w-100" src="..\assets\images\team2.webp" alt="">
+                        <img class="img-fluid rounded w-100" src="assets\images\team2.webp" alt="">
                     </div>
                     <div class="px-4 py-3">
                         <h5 class="fw-bold m-0">Sophia Johnson</h5>
@@ -519,7 +584,7 @@
                             <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-instagram"></i></a>
                             <a class="btn bg-white my-1 social-icon" href=""><i class="fab fa-linkedin-in"></i></a>
                         </div>
-                        <img class="img-fluid rounded w-100" src="..\assets\images\team3.jpg" alt="">
+                        <img class="img-fluid rounded w-100" src="assets\images\team3.jpg" alt="">
                     </div>
                     <div class="px-4 py-3">
                         <h5 class="fw-bold m-0">Lily Davis</h5>
@@ -532,165 +597,12 @@
 </div>
 <!-- Team End -->
 
-<!-- Flora Reviews Start -->
-<div class="container-fluid testimonial bg-light py-5">
-    <div class="container py-5">
-        <div class="row g-4 align-items-center">
-            <div class="col-xl-4 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="h-100 rounded">
-                    <h4  style="color: #CB9DF0;font-weight: bolder;font-size:xx-large;">Flora Reviews</h4>
-                    <h1 class="display-4 mb-4">What Our Customers Say</h1>
-                    <p class="mb-4">Discover what our customers love about our flowers and plants. Their feedback inspires us to grow and provide the best for your spaces.</p>
-                    <a class="btn rounded-pill text-white py-3 px-5" href="#" style="background-color: #CB9DF0;">See All Reviews <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
-            </div>
-            <div class="col-xl-8">
-                <div class="testimonial-carousel owl-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="testimonial-item  rounded p-4 wow fadeInUp" data-wow-delay="0.3s" style="background-color: #FFF9BF;">
-                        <div class="d-flex">
-                            <div><i class="fas fa-quote-left fa-3x  me-3" style="color: #CB9DF0"></i></div>
-                            <p class="mt-4 text-dark">"The flowers I ordered were stunning and lasted for weeks! The care tips provided were so helpful. Highly recommend their service!"</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="my-auto text-end">
-                                <h5>Emily R.</h5>
-                                <p class="mb-0">Plant Enthusiast</p>
-                            </div>
-                            <div class="bg-white rounded-circle ms-3">
-                                <img src="../assets/images/testimonial-1.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item  rounded p-4 wow fadeInUp" data-wow-delay="0.5s" style="background-color: #FFF9BF;">
-                        <div class="d-flex">
-                            <div><i class="fas fa-quote-left fa-3x  me-3" style="color: #CB9DF0"></i></div>
-                            <p class="mt-4 text-dark">"I bought an indoor plant for my office, and it's been thriving ever since. The team helped me pick the perfect one for my space."</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="my-auto text-end">
-                                <h5>James L.</h5>
-                                <p class="mb-0">Office Manager</p>
-                            </div>
-                            <div class="bg-white rounded-circle ms-3">
-                                <img src="../assets/images/testimonial-3.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="testimonial-item  rounded p-4 wow fadeInUp" data-wow-delay="0.7s"style="background-color: #FFF9BF;">
-                        <div class="d-flex">
-                            <div><i class="fas fa-quote-left fa-3x  me-3"style="color: #CB9DF0"></i></div>
-                            <p class="mt-4 text-dark">"The delivery was on time, and the flowers were fresh and vibrant. It made a beautiful gift for my friend!"</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="my-auto text-end">
-                                <h5>Sarah K.</h5>
-                                <p class="mb-0">Happy Customer</p>
-                            </div>
-                            <div class="bg-white rounded-circle ms-3">
-                                <img src="../assets/images/testimonial-2.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-<!-- Flora Reviews End -->
 
 
 
 
 
-<script>document.getElementById("exploreButton").addEventListener("click", function () {
-  document.getElementById("whyus").scrollIntoView({ behavior: "smooth" });
-});
 
 
-
-document.addEventListener("DOMContentLoaded", function () {
-  const counters = document.querySelectorAll('[data-toggle="counter-up"]');
-
-  counters.forEach((counter) => {
-    const updateCounter = () => {
-      const target = parseInt(counter.textContent.trim(), 10); // Parse text content as a number
-
-      if (isNaN(target)) {
-        console.error(`Invalid number in counter: "${counter.textContent.trim()}"`);
-        return; // Exit if the target is not a valid number
-      }
-
-      const speed = 200; // Number of animation frames
-      const increment = Math.max(1, Math.floor(target / speed)); // Ensure increment is at least 1
-
-      let count = 0;
-
-      const animate = () => {
-        count += increment;
-
-        if (count < target) {
-          counter.textContent = count;
-          requestAnimationFrame(animate);
-        } else {
-          counter.textContent = target; // Ensure final number matches target
-        }
-      };
-
-      animate();
-    };
-
-    // Trigger animation when visible
-    const observer = new IntersectionObserver(
-      (entries, observer) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            updateCounter();
-            observer.disconnect(); // Stop observing after triggering
-          }
-        });
-      },
-      { threshold: 0.5 } // Trigger when 50% visible
-    );
-
-    observer.observe(counter);
-  });
-});
-
- // testimonial carousel
- $(".testimonial-carousel").owlCarousel({
-        autoplay: true,
-        smartSpeed: 1500,
-        center: false,
-        dots: true,
-        loop: true,
-        margin: 25,
-        nav : false,
-        navText : [
-            '<i class="bi bi-arrow-left"></i>',
-            '<i class="bi bi-arrow-right"></i>'
-        ],
-        responsiveClass: true,
-        responsive: {
-            0:{
-                items:1
-            },
-            576:{
-                items:1
-            },
-            768:{
-                items:2
-            },
-            992:{
-                items:2
-            },
-            1200:{
-                items:2
-            }
-        }
-    });
-
-
-
-</script>
          </body>
  </html>

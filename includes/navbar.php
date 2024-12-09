@@ -79,13 +79,14 @@
                                 <span class="fa fa-bars"></span>
                             </button>
                             <div class="collapse navbar-collapse" id="navbarCollapse">
-                                <div class="navbar-nav mx-0 mx-lg-auto bg-white">
-                                    <a href="../pages/home.php" class="nav-item nav-link active">Home</a>
-                                    <a href="../pages/about.php" class="nav-item nav-link">About</a>
-                                    <a href="../pages/banner.php" class="nav-item nav-link">Services</a>
-                                    <a href="../pages/product.php" class="nav-item nav-link">Products</a>
-                                    <a href="contact.html" class="nav-item nav-link">Contact</a>
-                                    <div class="nav-btn ps-3 d-flex align-items-center">
+                            <div class="navbar-nav mx-0 mx-lg-auto bg-white">
+    <a href="index.php#home" class="nav-item nav-link active">Home</a>
+    <a href="index.php#about" class="nav-item nav-link">About</a>
+    <a href="index.php#gallery" class="nav-item nav-link">Services</a>
+    <a href="pages/product.php" class="nav-item nav-link">Products</a>
+    <a href="http://localhost/dashboard/#contact" class="nav-item nav-link">Contact</a>
+</div>
+
     <!-- Search Bar Start -->
     <form class="d-flex">
         <input class="form-control me-2 search-bar" type="search" placeholder="Search for flowers or plants..." aria-label="Search">
@@ -94,11 +95,11 @@
         </button>
     </form>
     <!-- User Icon -->
-    <a href="../pages/login.php" class="btn icon-btn me-3" title="Login">
+    <a href="pages/login.php" class="btn icon-btn me-3" title="Login">
         <i class="fas fa-user"></i>
     </a>
     <!-- Shopping Basket Icon -->
-    <a href="../pages/login.php" class="btn icon-btn" title="Cart">
+    <a href="pages/login.php" class="btn icon-btn" title="Cart">
         <i class="fas fa-shopping-basket"></i>
     </a>
 </div>

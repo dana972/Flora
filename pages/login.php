@@ -29,7 +29,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $_SESSION['username'] = $user['username'];
 
                 // Redirect to the dashboard or home page
-                header("Location: ./cart.php");
+                header("Location: cart.php");
                 exit(); // Always call exit after a header redirect
             } else {
                 // If password doesn't match
@@ -45,6 +45,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     }
 }
 ?>
+
 
 
 <!DOCTYPE html>
