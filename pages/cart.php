@@ -1,44 +1,3 @@
-<?php
-// Assuming you have a database connection in a config file
-include '../config/config.php';
-
-// Handling form submission to add to cart
-if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
-    $product_id = $_POST['product_id'];
-    $user_id = 1; // Example user ID, replace with actual user ID logic
-    $quantity = 1;
-
-    // Check if the product already exists in the cart
-    $check_query = "SELECT quantity FROM cart WHERE user_id = ? AND product_id = ?";
-    $stmt = $conn->prepare($check_query);
-    $stmt->bind_param("ii", $user_id, $product_id);
-    $stmt->execute();
-    $result = $stmt->get_result();
-
-    if ($result->num_rows > 0) {
-        // Product exists, increment the quantity
-        $row = $result->fetch_assoc();
-        $new_quantity = $row['quantity'] + 1;
-        $update_query = "UPDATE cart SET quantity = ? WHERE user_id = ? AND product_id = ?";
-        $stmt = $conn->prepare($update_query);
-        $stmt->bind_param("iii", $new_quantity, $user_id, $product_id);
-    } else {
-        // Product does not exist, add to cart
-        $insert_query = "INSERT INTO cart (user_id, product_id, quantity) VALUES (?, ?, ?)";
-        $stmt = $conn->prepare($insert_query);
-        $stmt->bind_param("iii", $user_id, $product_id, $quantity);
-    }
-
-    if ($stmt->execute()) {
-        echo 'Product added to cart!';
-    } else {
-        echo 'Error adding product to cart: ' . $stmt->error;
-    }
-
-    $stmt->close();
-}
-?>
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -71,26 +30,25 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
             color: #CB9DF0;
             margin-bottom: 20px;
         }
+
         .back-arrow {
-    position: absolute;
-    top: 60px;
-    left: 80px;
-    display: flex;
-    align-items: center; /* Center items vertically */
-}
+            position: absolute;
+            top: 60px;
+            left: 80px;
+        }
 
-.back-arrow a {
-    font-size: 1.2em;
-    font-weight: bold;
-    color: #CB9DF0;
-    text-decoration: none;
-    display: flex;
-    align-items: center; /* Center the content vertically */
-}
+        .back-arrow a {
+            font-size: 1.2em;
+            font-weight: bold;
+            color: #CB9DF0;
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+        }
 
-.back-arrow a i {
-    margin-right: 5px; /* Space between the icon and text */
-}
+        .back-arrow a:hover {
+            color: #F0C1E1;
+        }
 
         .cart {
             width: 60%;
@@ -224,7 +182,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     <div class="container">
         <div class="cart">
             <div class="back-arrow">
-                <a href="../index.php#product" class="back-btn"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
+                <a href="product-page-url" class="back-btn"><i class="fas fa-arrow-left"></i> Continue Shopping</a>
             </div>
             <h1>Your Cart</h1>
 
@@ -239,8 +197,10 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
                     </tr>
                 </thead>
                 <tbody id="cart-items">
-                    <!-- Cart items will be dynamically injected here by JavaScript -->
-                </tbody>
+    <?php include 'fetch_cart.php'; // PHP file containing the backend PHP code ?>
+
+</tbody>
+
             </table>
 
             <div id="cart-summary">
@@ -271,25 +231,69 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
     </div>
 
     <script>
- document.addEventListener('DOMContentLoaded', function() {
-    document.querySelectorAll('.add-to-cart-btn').forEach(button => {
+       document.addEventListener('DOMContentLoaded', function() {
+    const cartItemsContainer = document.getElementById('cart-items');
+    const totalItemsElement = document.getElementById('total-items');
+    const totalPriceElement = document.getElementById('total-price');
+    
+    let totalItems = 0;
+    let totalPrice = 0;
+
+    // Assume cartItems is populated with data from the backend (using PHP or another method)
+    cartItems.forEach(item => {
+        const itemTotal = item.price * item.quantity;
+        totalItems += item.quantity;
+        totalPrice += itemTotal;
+
+        const row = document.createElement('tr');
+        row.innerHTML = `
+            <td>${item.productName}</td>
+            <td>$${item.price.toFixed(2)}</td>
+            <td>
+                <input type="number" value="${item.quantity}" min="1" data-price="${item.price}" data-product-id="${item.productId}" class="quantity-input">
+            </td>
+            <td>$${itemTotal.toFixed(2)}</td>
+            <td>
+                <button class="remove-btn" data-product-id="${item.productId}">Remove</button>
+            </td>
+        `;
+        cartItemsContainer.appendChild(row);
+    });
+
+    // Update summary
+    totalItemsElement.textContent = totalItems;
+    totalPriceElement.textContent = totalPrice.toFixed(2);
+
+    // Remove item from cart when "Remove" button is clicked
+    document.querySelectorAll('.remove-btn').forEach(button => {
         button.addEventListener('click', function() {
             const productId = this.getAttribute('data-product-id');
-            const quantity = 1; // Set default quantity to 1 if not specified
+            const row = this.closest('tr');
 
-            // Send AJAX request to add to cart
-            fetch('add_to_cart.php', {
+            // Send AJAX request to remove product from the cart
+            fetch('remove_from_cart.php', {
                 method: 'POST',
-                headers: {
-                    'Content-Type': 'application/x-www-form-urlencoded'
-                },
-                body: `product_id=${productId}&quantity=${quantity}`
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ product_id: productId })
             })
-            .then(response => response.text())
+            .then(response => response.json())
             .then(data => {
-                alert(data); // Display a success message
-                // Optionally, refresh the cart summary without reloading the page
-                updateCartSummary();
+                if (data.success) {
+                    // Remove the row from the table
+                    row.remove();
+
+                    // Update cart summary
+                    const quantity = parseInt(row.querySelector('.quantity-input').value);
+                    const price = parseFloat(row.querySelector('.quantity-input').dataset.price);
+
+                    totalItems -= quantity;
+                    totalPrice -= (price * quantity);
+
+                    totalItemsElement.textContent = totalItems;
+                    totalPriceElement.textContent = totalPrice.toFixed(2);
+                } else {
+                    alert(data.message); // Show error if the backend operation fails
+                }
             })
             .catch(error => {
                 console.error('Error:', error);
@@ -297,12 +301,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST' && isset($_POST['product_id'])) {
         });
     });
 });
-
-// Function to update the cart summary without reloading the page
-function updateCartSummary() {
-    // Fetch the updated cart data and update the UI
-}
-
 
     </script>
 </body>
