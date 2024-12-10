@@ -1,63 +1,3 @@
-
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <title>Contact Form</title>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-    <link href='https://fonts.googleapis.com/css?family=Roboto:400,100,300,700' rel='stylesheet' type='text/css'>
-    <link rel="stylesheet" href="css/style.css">
-    <style>
-        .contact-wrap {
-            background-color: #FFFFFF; /* White background */
-            padding: 10px;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-        }
-        .form-control {
-            border: 2px solid #CB9DF0;
-            border-radius: 5px;
-            padding: 12px;
-            font-size: 16px;
-            margin-bottom: 15px;
-            color: #333;
-        }
-        .form-control::placeholder {
-            color: #999;
-        }
-        .form-control:focus {
-            border-color: #F0C1E1;
-            box-shadow: 0 0 5px rgba(240, 193, 225, 0.5);
-        }
-        .btn-primary {
-            background-color: #CB9DF0;
-            border: none;
-            padding: 10px 20px;
-            color: white;
-            font-size: 18px;
-            border-radius: 5px;
-            cursor: pointer;
-            transition: background-color 0.3s;
-        }
-        .btn-primary:hover {
-            background-color: #F0C1E1;
-        }
-        .labelcon {
-            font-weight: bold;
-            color: #333; /* Darker color for better contrast with the white background */
-        }
-
-        @media (max-width: 768px) {
-            .contact-wrap {
-                width: 100%;
-                padding: 15px;
-            }
-            .contact-image {
-                display: none;
-            }
-        }
-    </style>
-</head>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -103,7 +43,7 @@
         }
         .label {
             font-weight: bold;
-            color: #333; /* Darker color for better contrast with the white background */
+            color: #333;
         }
 
         @media (max-width: 768px) {
@@ -133,7 +73,7 @@
                         <h3 class="mb-4">Get in touch with us</h3>
                         <div id="form-message-warning" class="mb-4"></div>
                         <div id="form-message-success" class="mb-4"></div>
-                        <form method="POST" action="session_messages.php" id="contactForm" name="contactForm" class="contactForm">
+                        <form method="POST" action="pages/session_messages.php" id="contactForm" name="contactForm" class="contactForm">
                             <div class="row">
                                 <div class="col-md-6">
                                     <div class="form-group">
@@ -181,27 +121,5 @@
     <script src="js/bootstrap.min.js"></script>
     <script src="js/jquery.validate.min.js"></script>
     <script src="js/main.js"></script>
-    <script>
-        $(document).ready(function() {
-            $('#contactForm').on('submit', function(e) {
-                e.preventDefault(); // Prevent the default form submission
-
-                $.ajax({
-                    type: 'POST',
-                    url: $(this).attr('action'),
-                    data: $(this).serialize(),
-                    success: function(response) {
-                        $('#form-message-success').text(response).show();
-                        $('#form-message-warning').hide();
-                        $('#contactForm')[0].reset(); // Reset the form
-                    },
-                    error: function() {
-                        $('#form-message-warning').text('There was an error sending your message. Please try again.').show();
-                        $('#form-message-success').hide();
-                    }
-                });
-            });
-        });
-    </script>
 </body>
 </html>
