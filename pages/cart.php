@@ -231,76 +231,90 @@
     </div>
 
     <script>
-       document.addEventListener('DOMContentLoaded', function() {
-    const cartItemsContainer = document.getElementById('cart-items');
-    const totalItemsElement = document.getElementById('total-items');
-    const totalPriceElement = document.getElementById('total-price');
-    
-    let totalItems = 0;
-    let totalPrice = 0;
+    document.addEventListener('DOMContentLoaded', function() {
+    // Fetch cart data from the server (replace with your actual URL)
+    fetch('fetch_cart.php')
+        .then(response => response.json())
+        .then(cartData => {
+            // Assuming the cart data is returned as an array of items
+            cartItems = cartData;
 
-    // Assume cartItems is populated with data from the backend (using PHP or another method)
-    cartItems.forEach(item => {
-        const itemTotal = item.price * item.quantity;
-        totalItems += item.quantity;
-        totalPrice += itemTotal;
-
-        const row = document.createElement('tr');
-        row.innerHTML = `
-            <td>${item.productName}</td>
-            <td>$${item.price.toFixed(2)}</td>
-            <td>
-                <input type="number" value="${item.quantity}" min="1" data-price="${item.price}" data-product-id="${item.productId}" class="quantity-input">
-            </td>
-            <td>$${itemTotal.toFixed(2)}</td>
-            <td>
-                <button class="remove-btn" data-product-id="${item.productId}">Remove</button>
-            </td>
-        `;
-        cartItemsContainer.appendChild(row);
-    });
-
-    // Update summary
-    totalItemsElement.textContent = totalItems;
-    totalPriceElement.textContent = totalPrice.toFixed(2);
-
-    // Remove item from cart when "Remove" button is clicked
-    document.querySelectorAll('.remove-btn').forEach(button => {
-        button.addEventListener('click', function() {
-            const productId = this.getAttribute('data-product-id');
-            const row = this.closest('tr');
-
-            // Send AJAX request to remove product from the cart
-            fetch('remove_from_cart.php', {
-                method: 'POST',
-                headers: { 'Content-Type': 'application/json' },
-                body: JSON.stringify({ product_id: productId })
-            })
-            .then(response => response.json())
-            .then(data => {
-                if (data.success) {
-                    // Remove the row from the table
-                    row.remove();
-
-                    // Update cart summary
-                    const quantity = parseInt(row.querySelector('.quantity-input').value);
-                    const price = parseFloat(row.querySelector('.quantity-input').dataset.price);
-
-                    totalItems -= quantity;
-                    totalPrice -= (price * quantity);
-
-                    totalItemsElement.textContent = totalItems;
-                    totalPriceElement.textContent = totalPrice.toFixed(2);
-                } else {
-                    alert(data.message); // Show error if the backend operation fails
-                }
-            })
-            .catch(error => {
-                console.error('Error:', error);
-            });
+            // Update the cart UI
+            updateCart();
+        })
+        .catch(error => {
+            console.error('Error fetching cart data:', error);
         });
+
+    // Function to update the cart table and summary
+    function updateCart() {
+        const cartItemsContainer = document.getElementById('cart-items');
+        const totalItemsElement = document.getElementById('total-items');
+        const totalPriceElement = document.getElementById('total-price');
+        
+        let totalItems = 0;
+        let totalPrice = 0;
+
+        cartItemsContainer.innerHTML = ''; // Clear the table before re-rendering
+
+        cartItems.forEach(item => {
+            const itemTotal = item.price * item.quantity;
+            totalItems += item.quantity;
+            totalPrice += itemTotal;
+
+            const row = document.createElement('tr');
+            row.innerHTML = `
+                <td>${item.productName}</td>
+                <td>$${item.price.toFixed(2)}</td>
+                <td>
+                    <input type="number" value="${item.quantity}" min="1" class="quantity-input" data-product-id="${item.productId}">
+                </td>
+                <td>$${itemTotal.toFixed(2)}</td>
+                <td>
+                    <button class="remove-btn" data-product-id="${item.productId}">Remove</button>
+                </td>
+            `;
+            cartItemsContainer.appendChild(row);
+        });
+
+        // Update the cart summary
+        totalItemsElement.textContent = totalItems;
+        totalPriceElement.textContent = totalPrice.toFixed(2);
+    }
+
+    // Handle quantity change
+    document.addEventListener('input', function(event) {
+        if (event.target.classList.contains('quantity-input')) {
+            const productId = parseInt(event.target.getAttribute('data-product-id'));
+            const newQuantity = parseInt(event.target.value);
+            
+            const product = cartItems.find(item => item.productId === productId);
+            if (product) {
+                product.quantity = newQuantity;
+                updateCart();
+            }
+        }
     });
-});
+
+    // Handle remove button click
+    document.addEventListener('click', function(event) {
+        if (event.target.classList.contains('remove-btn')) {
+            const productId = parseInt(event.target.getAttribute('data-product-id'));
+
+            const productIndex = cartItems.findIndex(item => item.productId === productId);
+            if (productIndex !== -1) {
+                const product = cartItems[productIndex];
+
+                // Send request to remove item from the database
+                fetch('remove_from_cart.php', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ product_id: productId })
+                })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.success) {
+                        // Successfully removed from the database, now update the
 
     </script>
 </body>

@@ -508,7 +508,7 @@
       </div>
       <div class="col-sm-6 wow fadeIn" data-wow-delay="0.5s">
         <div class="text-center py-5 px-4" style="background-color: #F0C1E1;">
-          <img class="img-fluid mb-4" src="img/plants.png" alt="">
+          <img class="img-fluid mb-4" src="" alt="">
           <div class="d-flex justify-content-center align-items-center mb-4">
           <i class="fa fa-seedling" style="color: white; font-size: 48px;"></i>
         </div>
@@ -518,7 +518,7 @@
       </div>
       <div class="col-sm-6 wow fadeIn" data-wow-delay="0.7s">
         <div class="text-center py-5 px-4" style="background-color: #CB9DF0;">
-          <img class="img-fluid mb-4" src="img/client.png" alt="">
+          <img class="img-fluid mb-4" src="" alt="">
           <div class="d-flex justify-content-center align-items-center mb-4">
           <i class="fa fa-user-check" style="color: white; font-size: 48px;"></i>
         </div>
