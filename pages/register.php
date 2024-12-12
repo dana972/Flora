@@ -1,28 +1,45 @@
 <?php
-// Include the database connection
-require_once '../config/config.php';
 
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Get and sanitize form data
-    $username = mysqli_real_escape_string($conn, $_POST['username']);
-    $email = mysqli_real_escape_string($conn, $_POST['email']);
-    $password = mysqli_real_escape_string($conn, $_POST['password']);
+require '../config/config.php';
 
-    // Hash the password before saving it
-    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-    // Prepare the SQL query to insert the data
-    $sql = "INSERT INTO users (username, email, password) VALUES ('$username', '$email', '$hashed_password')";
+    if (!empty($username) && !empty($password)) {
+        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
 
-    // Execute the query
-    if (mysqli_query($conn, $sql)) {
-        // Redirect to the login page after successful registration
-        header("Location: ./login.php");
-        exit(); // Always call exit after a header redirect
+        $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+        $stmt = $pdo->prepare($sql);
+
+        try {
+            $stmt->execute(['username' => $username, 'password' => $hashedPassword]);
+            echo "Registration successful. <a href='login.php'>Login</a>";
+        } catch (PDOException $e) {
+            if ($e->getCode() == 23000) {
+                echo "Username already exists.";
+            } else {
+                echo "Error: " . $e->getMessage();
+            }
+        }
     } else {
-        // If there's an error, show it
-        echo "Error: " . mysqli_error($conn);
+        echo "Please fill in all fields.";
     }
 }
 ?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form method="POST">
+        <label for="username">Username:</label>
+        <input type="text" name="username" required><br>
+        <label for="password">Password:</label>
+        <input type="password" name="password" required><br>
+        <button type="submit">Register</button>
+    </form>
+</body>
+</html>

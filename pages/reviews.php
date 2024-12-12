@@ -1,3 +1,15 @@
+<?php
+// Include database configuration
+require 'config/config.php';
+
+// Fetch reviews from the database
+try {
+    $stmt = $pdo->query("SELECT customer_name, customer_title, review_text, customer_image, background_color FROM reviews");
+    $reviews = $stmt->fetchAll(PDO::FETCH_ASSOC);
+} catch (PDOException $e) {
+    die("Error fetching reviews: " . $e->getMessage());
+}
+?>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -58,75 +70,40 @@
 .reviews .reviews-carousel .reviews-item {
   height: 300px; /* Set a fixed height */}
 /*** reviews End ***/</style>
-    <body>
-
-
-        <!-- Flora Reviews Start -->
-<div class="container-fluid reviews bg-light py-5">
+  <body>
+  <div class="container-fluid reviews bg-light py-5">
     <div class="container py-5">
         <div class="row g-4 align-items-center">
             <div class="col-xl-4 wow fadeInLeft" data-wow-delay="0.1s">
-                <div class="h-100 rounded">
-                    <h4  style="color: #CB9DF0;font-weight: bolder;font-size:xx-large;">Flora Reviews</h4>
-                    <h1 class="display-4 mb-4">What Our Customers Say</h1>
-                    <p class="mb-4">Discover what our customers love about our flowers and plants. Their feedback inspires us to grow and provide the best for your spaces.</p>
-                    <a class="btn rounded-pill text-white py-3 px-5" href="#" style="background-color: #CB9DF0;">See All Reviews <i class="fas fa-arrow-right ms-2"></i></a>
-                </div>
+                <h4 style="color: #CB9DF0; font-weight: bolder; font-size: xx-large;">Flora Reviews</h4>
+                <h1 class="display-4 mb-4">What Our Customers Say</h1>
+                <p class="mb-4">Discover what our customers love about our flowers and plants. Their feedback inspires us to grow and provide the best for your spaces.</p>
+                <a class="btn rounded-pill text-white py-3 px-5" href="#" style="background-color: #CB9DF0;">See All Reviews <i class="fas fa-arrow-right ms-2"></i></a>
             </div>
             <div class="col-xl-8">
                 <div class="reviews-carousel owl-carousel wow fadeInUp" data-wow-delay="0.1s">
-                    <div class="reviews-item  rounded p-4 wow fadeInUp" data-wow-delay="0.3s" style="background-color: #F0C1E1;">
-                        <div class="d-flex">
-                            <div><i class="fas fa-quote-left fa-3x  me-3" style="color: #CB9DF0"></i></div>
-                            <p class="mt-4 text-dark">"The flowers I ordered were stunning and lasted for weeks! The care tips provided were so helpful. Highly recommend their service!"</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="my-auto text-end">
-                                <h5>Emily R.</h5>
-                                <p class="mb-0">Plant Enthusiast</p>
+                    <?php foreach ($reviews as $review): ?>
+                        <div class="reviews-item rounded p-4 wow fadeInUp" data-wow-delay="0.3s" style="background-color: <?= htmlspecialchars($review['background_color']) ?>;">
+                            <div class="d-flex">
+                                <div><i class="fas fa-quote-left fa-3x me-3" style="color: #CB9DF0"></i></div>
+                                <p class="mt-4 text-dark">"<?= htmlspecialchars($review['review_text']) ?>"</p>
                             </div>
-                            <div class="bg-white rounded-circle ms-3">
-                                <img src="assets/images/testimonial-1.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
-                            </div>
-                        </div>
-                    </div>
-                    <div class="reviews-item  rounded p-4 wow fadeInUp" data-wow-delay="0.5s" style="background-color: #FFF9BF;">
-                        <div class="d-flex">
-                            <div><i class="fas fa-quote-left fa-3x  me-3" style="color: #CB9DF0"></i></div>
-                            <p class="mt-4 text-dark">"I bought an indoor plant for my office, and it's been thriving ever since. The team helped me pick the perfect one for my space."</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="my-auto text-end">
-                                <h5>James L.</h5>
-                                <p class="mb-0">Office Manager</p>
-                            </div>
-                            <div class="bg-white rounded-circle ms-3">
-                                <img src="assets/images/testimonial-3.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
+                            <div class="d-flex justify-content-end">
+                                <div class="my-auto text-end">
+                                    <h5><?= htmlspecialchars($review['customer_name']) ?></h5>
+                                    <p class="mb-0"><?= htmlspecialchars($review['customer_title']) ?></p>
+                                </div>
+                                <div class="bg-white rounded-circle ms-3">
+                                    <img src="<?= htmlspecialchars($review['customer_image']) ?>" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
+                                </div>
                             </div>
                         </div>
-                    </div>
-                    <div class="reviews-item  rounded p-4 wow fadeInUp" data-wow-delay="0.7s"style="background-color: #FFF9BF;">
-                        <div class="d-flex">
-                            <div><i class="fas fa-quote-left fa-3x  me-3"style="color: #CB9DF0"></i></div>
-                            <p class="mt-4 text-dark">"The delivery was on time, and the flowers were fresh and vibrant. It made a beautiful gift for my friend!"</p>
-                        </div>
-                        <div class="d-flex justify-content-end">
-                            <div class="my-auto text-end">
-                                <h5>Sarah K.</h5>
-                                <p class="mb-0">Happy Customer</p>
-                            </div>
-                            <div class="bg-white rounded-circle ms-3">
-                                <img src="assets/images/testimonial-2.jpg" class="rounded-circle p-2" style="width: 80px; height: 80px; border: 1px solid; border-color: #CB9DF0;" alt="Customer review">
-                            </div>
-                        </div>
-                    </div>
+                    <?php endforeach; ?>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
 
         
     <!-- JavaScript Libraries -->

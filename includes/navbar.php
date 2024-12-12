@@ -99,7 +99,7 @@
         <i class="fas fa-user"></i>
     </a>
     <!-- Shopping Basket Icon -->
-    <a href="pages/login.php" class="btn icon-btn" title="Cart">
+    <a href="pages/cart.php" class="btn icon-btn" title="Cart">
         <i class="fas fa-shopping-basket"></i>
     </a>
 </div>

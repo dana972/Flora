@@ -1,15 +1,14 @@
 <?php
-define("db_SERVER", "localhost");
-define("db_USER","root");
-define("db_PASSWORD","");
-define("db_DBNAME", "flora");
-$conn = mysqli_connect(db_SERVER,db_USER,db_PASSWORD,db_DBNAME);
+// config.php
+$host = 'localhost';
+$dbname = 'flora';
+$username = 'root';
+$password = '';
 
-if (!$conn)
-{   
-    echo '<script type="text/javascript"> alert("Error connecting the server ". mysqli_connect_error()) </script>';
-
-} 
-else
-	// echo 'success';
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname", $username, $password);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Connection failed: " . $e->getMessage());
+}
 ?>

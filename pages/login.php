@@ -1,51 +1,37 @@
 <?php
-// Include the database connection
-require_once '../config/config.php';
+session_start();
+require '../config/config.php';
 
-// Check if the form is submitted
-if ($_SERVER['REQUEST_METHOD'] == 'POST') {
-    // Check if the username and password are set in the POST request
-    if (isset($_POST['username']) && isset($_POST['password'])) {
-        // Get and sanitize form data
-        $username = mysqli_real_escape_string($conn, $_POST['username']);
-        $password = mysqli_real_escape_string($conn, $_POST['password']);
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $username = trim($_POST['username']);
+    $password = trim($_POST['password']);
 
-        // Prepare the SQL query to check if the user exists
-        $sql = "SELECT * FROM users WHERE username = '$username' OR email = '$username'"; 
+    if (!empty($username) && !empty($password)) {
+        try {
+            $sql = "SELECT user_id, username, email, password, role FROM users WHERE username = :username";
+            $stmt = $pdo->prepare($sql);
+            $stmt->execute(['username' => $username]);
+            $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
-        // Execute the query
-        $result = mysqli_query($conn, $sql);
-        
-        // Check if the user exists
-        if (mysqli_num_rows($result) > 0) {
-            // Fetch the user data
-            $user = mysqli_fetch_assoc($result);
-
-            // Verify the password
-            if (password_verify($password, $user['password'])) {
-                // Start a session and store user info for login
-                session_start();
-                $_SESSION['user_id'] = $user['id'];
+            if ($user && password_verify($password, $user['password'])) {
+                // Set session variables
+                $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
 
-                // Redirect to the dashboard or home page
+                // Redirect to the cart page
                 header("Location: cart.php");
-                exit(); // Always call exit after a header redirect
+                exit;
             } else {
-                // If password doesn't match
-                echo "Invalid password!";
+                echo "Invalid username or password.";
             }
-        } else {
-            // If no user is found
-            echo "No user found with that username or email!";
+        } catch (PDOException $e) {
+            echo "Database error: " . $e->getMessage();
         }
     } else {
-        // If username or password is missing
-        echo "Please fill in both username and password!";
+        echo "Please fill in all fields.";
     }
 }
 ?>
-
 
 
 <!DOCTYPE html>
@@ -57,6 +43,179 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="style.css">
     <link href='https://unpkg.com/boxicons@2.1.4/css/boxicons.min.css' rel='stylesheet'>
     <style>
+@media (max-width: 1024px) {
+    .wrapper {
+        width: 95%;
+        max-width: 600px;
+    }
+
+    .wrapper .form_box h2 {
+        font-size: 26px;
+    }
+
+    .input_box {
+        height: 40px;
+    }
+
+    .input_box input {
+        font-size: 14px;
+    }
+
+    .input_box label {
+        font-size: 12px;
+    }
+
+    .input_box i {
+        font-size: 16px;
+    }
+
+    .btn {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .form_box .logreg-link {
+        font-size: 14px;
+    }
+
+    .wrapper .info-text h2 {
+        font-size: 28px;
+    }
+
+    .wrapper .info-text p {
+        font-size: 14px;
+    }
+
+    .wrapper .bg-anmiate,
+    .wrapper .bg-anmiate2 {
+        width: 600px;
+        height: 450px;
+        top: -4px;
+    }
+
+    .wrapper .bg-anmiate2 {
+        top: 95%;
+    }
+}
+
+@media (max-width: 768px) {
+    .wrapper {
+        width: 90%;
+        max-width: 450px;
+    }
+
+    .wrapper .form_box {
+        width: 100%;
+        padding: 0 20px;
+    }
+
+    .input_box {
+        height: 35px;
+        margin: 15px 0;
+    }
+
+    .input_box input {
+        font-size: 14px;
+    }
+
+    .input_box label {
+        font-size: 12px;
+    }
+
+    .input_box i {
+        font-size: 14px;
+    }
+
+    .btn {
+        height: 40px;
+        font-size: 14px;
+    }
+
+    .form_box .logreg-link {
+        font-size: 12px;
+    }
+
+    .wrapper .info-text h2 {
+        font-size: 24px;
+    }
+
+    .wrapper .info-text p {
+        font-size: 12px;
+    }
+
+    .wrapper .bg-anmiate,
+    .wrapper .bg-anmiate2 {
+        width: 500px;
+        height: 400px;
+        top: -4px;
+    }
+
+    .wrapper .bg-anmiate2 {
+        top: 90%;
+    }
+}
+
+@media (max-width: 480px) {
+    .wrapper {
+        width: 95%;
+        max-width: 360px;
+        padding: 15px;
+    }
+
+    .wrapper .form_box {
+        padding: 0 10px;
+    }
+
+    .wrapper .form_box h2 {
+        font-size: 20px;
+    }
+
+    .input_box {
+        height: 30px;
+        margin: 10px 0;
+    }
+
+    .input_box input {
+        font-size: 12px;
+    }
+
+    .input_box label {
+        font-size: 10px;
+    }
+
+    .input_box i {
+        font-size: 14px;
+    }
+
+    .btn {
+        height: 35px;
+        font-size: 12px;
+    }
+
+    .form_box .logreg-link {
+        font-size: 10px;
+    }
+
+    .wrapper .info-text h2 {
+        font-size: 20px;
+    }
+
+    .wrapper .info-text p {
+        font-size: 10px;
+    }
+
+    .wrapper .bg-anmiate,
+    .wrapper .bg-anmiate2 {
+        width: 360px;
+        height: 300px;
+        top: -4px;
+    }
+
+    .wrapper .bg-anmiate2 {
+        top: 85%;
+    }
+}
+
 @import url('https://fonts.googleapis.com/css2?family=Caprasimo&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap');
 * {
     margin: 0;
