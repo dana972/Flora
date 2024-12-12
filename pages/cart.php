@@ -280,7 +280,7 @@ try {
 <div class="container">
     <div class="cart">
         <div class="navigation-links">
-          <a href="product.php" class="navigation-link back-btn"><i class="fas fa-arrow-left"></i> Continue Shopping </a>
+          <a href="products.php" class="navigation-link back-btn"><i class="fas fa-arrow-left"></i> Continue Shopping </a>
           <a href="logout.php" class="navigation-link logout-link">Log Out</a>
           
             

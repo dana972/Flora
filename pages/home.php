@@ -18,7 +18,7 @@
                                     <h1 class="display-2  mb-4" id=welcome>Welcome To Flora</h1>
                                       <h4 class=" text-uppercase fw-bold mb-4">Where Nature's Beauty Meets Your Special Moments</h4>
                                     <div class="d-flex justify-content-center justify-content-md-start flex-shrink-0 mb-4">
-                                        <a class="btn  py-3 px-4 px-md-5 me-2 " href="product.php">Shop Now</a>
+                                        <a class="btn  py-3 px-4 px-md-5 me-2 " href="pages/products.php">Shop Now</a>
                                         <a class="btn py-3 px-4 px-md-5 ms-2" href="index.php#contact">Contact Us </a>
                                     </div>
                                 </div>

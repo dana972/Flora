@@ -83,7 +83,7 @@
     <a href="index.php#home" class="nav-item nav-link active">Home</a>
     <a href="index.php#about" class="nav-item nav-link">About</a>
     <a href="index.php#gallery" class="nav-item nav-link">Services</a>
-    <a href="pages/product.php" class="nav-item nav-link">Products</a>
+    <a href="pages/products.php" class="nav-item nav-link">Products</a>
     <a href="index.php#contact" class="nav-item nav-link">Contact</a>
 </div>
 

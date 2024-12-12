@@ -1,45 +1,42 @@
 <?php
+// Include the database connection
+require_once '../config/config.php';
 
-require '../config/config.php';
+// Check if the form is submitted
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    // Get and sanitize form data
+    $username = filter_var($_POST['username'], FILTER_SANITIZE_STRING);
+    $email = filter_var($_POST['email'], FILTER_SANITIZE_EMAIL);
+    $password = $_POST['password'];
 
-if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    $username = trim($_POST['username']);
-    $password = trim($_POST['password']);
+    // Validate email format
+    if (!filter_var($email, FILTER_VALIDATE_EMAIL)) {
+        echo "Invalid email format";
+        exit();
+    }
 
-    if (!empty($username) && !empty($password)) {
-        $hashedPassword = password_hash($password, PASSWORD_DEFAULT);
+    // Hash the password before saving it
+    $hashed_password = password_hash($password, PASSWORD_DEFAULT);
 
-        $sql = "INSERT INTO users (username, password) VALUES (:username, :password)";
+    try {
+        // Prepare the SQL query to insert the data using PDO
+        $sql = "INSERT INTO users (username, email, password) VALUES (:username, :email, :password)";
         $stmt = $pdo->prepare($sql);
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':email', $email);
+        $stmt->bindParam(':password', $hashed_password);
 
-        try {
-            $stmt->execute(['username' => $username, 'password' => $hashedPassword]);
-            echo "Registration successful. <a href='login.php'>Login</a>";
-        } catch (PDOException $e) {
-            if ($e->getCode() == 23000) {
-                echo "Username already exists.";
-            } else {
-                echo "Error: " . $e->getMessage();
-            }
+        // Execute the query
+        if ($stmt->execute()) {
+            // Redirect to the login page after successful registration
+            header("Location: ./login.php");
+            exit(); // Always call exit after a header redirect
+        } else {
+            // If there's an error, show it
+            echo "Error: " . $stmt->errorInfo()[2];
         }
-    } else {
-        echo "Please fill in all fields.";
+    } catch (PDOException $e) {
+        echo "Error: " . $e->getMessage();
     }
 }
 ?>
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Register</title>
-</head>
-<body>
-    <h2>Register</h2>
-    <form method="POST">
-        <label for="username">Username:</label>
-        <input type="text" name="username" required><br>
-        <label for="password">Password:</label>
-        <input type="password" name="password" required><br>
-        <button type="submit">Register</button>
-    </form>
-</body>
-</html>
