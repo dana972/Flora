@@ -26,6 +26,72 @@
 
     <!-- Template Stylesheet -->
     <link href="assets/css/style.css" rel="stylesheet">
+    <style>
+  .sr-only {
+    width: 1px;
+    height: 1px;
+    position: absolute;
+    overflow: hidden;
+  }
+
+  .scroll {
+    --transition-time: 0.4s;
+    --width-arrow-line: 6px;
+    --color-arrow: white; /* Light pinkish shade */
+  }
+
+  .top-btn {
+    display: block;
+    width: 60px;
+    aspect-ratio: 1 / 1;
+    border-radius: 50%;
+    position: fixed; /* Position fixed to the bottom right corner */
+    bottom: 20px;
+    right: 20px;
+    background-color: #CB9DF0; /* Light lavender shade */
+    box-shadow: 0 0 10px #CB9DF0; /* Same light lavender shade */
+    overflow: hidden;
+  }
+
+  .top-btn::before,
+  .top-btn::after {
+    content: "";
+    position: absolute;
+    top: 25%;
+    left: 50%;
+    translate: -50% 0;
+  }
+
+  .top-btn::before {
+    width: 24px;
+    aspect-ratio: 1 / 1;
+    border-top: var(--width-arrow-line) solid var(--color-arrow);
+    border-left: var(--width-arrow-line) solid var(--color-arrow);
+    rotate: 45deg;
+  }
+
+  .top-btn::after {
+    width: var(--width-arrow-line);
+    height: 50%;
+    background-color: var(--color-arrow);
+  }
+
+  .scroll--active .top-btn:hover::before,
+  .scroll--active .top-btn:hover::after {
+    animation: top 0.8s infinite;
+  }
+
+  @keyframes top {
+    0% {
+      top: 100%;
+    }
+
+    100% {
+      top: -50%;
+    }
+  }
+</style>
+
 </head>
 
 
@@ -51,7 +117,12 @@
 </div>
 <hr>
 
-
+<div class="scroll scroll--active">
+  <a href="#top" type="button" class="top-btn">
+    <span class="sr-only">Scroll to Top</span>
+  </a>
+</div>
+<?php include 'includes/footer.php'; ?>
 
 
 

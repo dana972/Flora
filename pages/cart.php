@@ -322,15 +322,16 @@ try {
 
     <div class="checkout">
         <h2>Checkout</h2>
-        <form id="checkout-form">
-            <!-- Payment Section -->
-            <input type="text" id="card-name" name="card-name" placeholder="Cardholder Name" required>
-            <input type="text" id="card-number" name="card-number" placeholder="Card Number" required>
-            <input type="text" id="card-expiry" name="card-expiry" placeholder="Expiry Date (MM/YY)" required>
-            <input type="text" id="card-cvc" name="card-cvc" placeholder="CVC" required>
+        <form id="checkout-form" action="checkout_handler.php" method="POST">
+    <!-- Payment Section -->
+    <input type="text" id="card-name" name="card_name" placeholder="Cardholder Name" required>
+    <input type="text" id="card-number" name="card_number" placeholder="Card Number" required>
+    <input type="text" id="card-expiry" name="card_expiry" placeholder="Expiry Date (MM/YY)" required>
+    <input type="text" id="card-cvc" name="card_cvc" placeholder="CVC" required>
 
-            <button type="submit">Place Order</button>
-        </form>
+    <button type="submit">Place Order</button>
+</form>
+
 
         <div class="payment-methods">
             <img src="../assets/images/visa.svg" alt="Visa" title="Visa">
@@ -339,6 +340,8 @@ try {
         </div>
     </div>
 </div>
+<br><hr><br><br>
+<?php include '../includes/footer.php'; ?>
 
 <script>
 document.querySelectorAll('.remove-btn').forEach(button => {
