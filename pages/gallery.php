@@ -1,5 +1,5 @@
 <?php
-require_once 'config/config.php'; // Include the database configuration
+require_once 'config/config.php'; 
 
 try {
     // Query to fetch gallery images

@@ -211,53 +211,61 @@ if ($orderId) {
         <!-- Earlier orders section -->
         <div class="earlier-orders">
             <h3>Earlier Orders</h3>
-            <?php if (!empty($earlierOrders)) {
-                foreach ($earlierOrders as $earlierOrder) { 
-                    // Fetch items for the earlier order
-                    $sqlEarlierOrderItems = "SELECT oi.*, p.name AS product_name, p.price
-                                             FROM order_items oi
-                                             JOIN products p ON oi.product_id = p.product_id
-                                             WHERE oi.order_id = :order_id";
-                    $stmtEarlierOrderItems = $pdo->prepare($sqlEarlierOrderItems);
-                    $stmtEarlierOrderItems->execute(['order_id' => $earlierOrder['order_id']]);
-                    $earlierOrderItems = $stmtEarlierOrderItems->fetchAll(PDO::FETCH_ASSOC);
-                    $earlierOrderTotalCost = 0;
-                    ?>
-                    <h4>Order ID: <?php echo htmlspecialchars($earlierOrder['order_id']); ?> (Status: <?php echo htmlspecialchars($earlierOrder['status']); ?>)</h4>
-                    <p><strong>Order Date:</strong> <?php echo htmlspecialchars(date('F j, Y', strtotime($earlierOrder['created_at']))); ?></p>
-                    
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>Product Name</th>
-                                <th>Quantity</th>
-                                <th>Price</th>
-                                <th>Total</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <?php
-                            foreach ($earlierOrderItems as $item) {
-                                $itemTotal = $item['quantity'] * $item['price'];
-                                $earlierOrderTotalCost += $itemTotal;
-                                echo "<tr>
-                                        <td>" . htmlspecialchars($item['product_name']) . "</td>
-                                        <td>" . $item['quantity'] . "</td>
-                                        <td>$" . number_format($item['price'], 2) . "</td>
-                                        <td>$" . number_format($itemTotal, 2) . "</td>
-                                    </tr>";
-                            }
-                            ?>
-                        </tbody>
-                    </table>
-                    
-                    <p><strong>Total Cost: $<?php echo number_format($earlierOrderTotalCost, 2); ?></strong></p>
-                    <hr>
-                <?php }
-            } else { ?>
-                <p>No earlier orders found.</p>
-            <?php } ?>
-        </div>
+            <?php if (!empty($earlierOrders)) { 
+    foreach ($earlierOrders as $earlierOrder) { 
+        // Fetch items for the earlier order
+        $sqlEarlierOrderItems = "SELECT oi.*, p.name AS product_name, p.price
+                                 FROM order_items oi
+                                 JOIN products p ON oi.product_id = p.product_id
+                                 WHERE oi.order_id = :order_id";
+        $stmtEarlierOrderItems = $pdo->prepare($sqlEarlierOrderItems);
+        $stmtEarlierOrderItems->execute(['order_id' => $earlierOrder['order_id']]);
+        $earlierOrderItems = $stmtEarlierOrderItems->fetchAll(PDO::FETCH_ASSOC);
+        $earlierOrderTotalCost = 0;
+        ?>
+        <h4>Order ID: <?php echo htmlspecialchars($earlierOrder['order_id']); ?> (Status: <?php echo htmlspecialchars($earlierOrder['status']); ?>)</h4>
+        <p><strong>Order Date:</strong> <?php echo htmlspecialchars(date('F j, Y', strtotime($earlierOrder['created_at']))); ?></p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>Product Name</th>
+                    <th>Quantity</th>
+                    <th>Price</th>
+                    <th>Total</th>
+                </tr>
+            </thead>
+            <tbody>
+                <?php
+                foreach ($earlierOrderItems as $item) {
+                    $itemTotal = $item['quantity'] * $item['price'];
+                    $earlierOrderTotalCost += $itemTotal;
+                    echo "<tr>
+                            <td>" . htmlspecialchars($item['product_name']) . "</td>
+                            <td>" . $item['quantity'] . "</td>
+                            <td>$" . number_format($item['price'], 2) . "</td>
+                            <td>$" . number_format($itemTotal, 2) . "</td>
+                        </tr>";
+                }
+                ?>
+            </tbody>
+        </table>
+
+        <p><strong>Total Cost: $<?php echo number_format($earlierOrderTotalCost, 2); ?></strong></p>
+        <?php if ($earlierOrder['status'] !== 'Cancelled') { ?>
+            <form action="cancel_order.php" method="POST">
+                <input type="hidden" name="order_id" value="<?php echo htmlspecialchars($earlierOrder['order_id']); ?>">
+                <button type="submit" style="background-color: #CB9DF0; color: white; padding: 10px 20px; border: none; border-radius: 5px; cursor: pointer;">Cancel Order</button>
+            </form>
+        <?php } else { ?>
+            <p style="color: red; font-weight: bold;">This order has been cancelled.</p>
+        <?php } ?>
+        <hr>
+<?php }
+} else { ?>
+    <p>No earlier orders found.</p>
+<?php } ?>
+
     </div>
 </body>
 </html>
