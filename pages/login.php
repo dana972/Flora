@@ -17,9 +17,14 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
                 // Set session variables
                 $_SESSION['user_id'] = $user['user_id'];
                 $_SESSION['username'] = $user['username'];
+                $_SESSION['role'] = $user['role']; // Save the user's role in the session
 
-                // Redirect to the cart page
-                header("Location: cart.php");
+                // Check if the user is an admin and redirect accordingly
+                if ($user['role'] === 'admin') {
+                    header("Location: admin.php"); // Redirect to admin page
+                } else {
+                    header("Location: cart.php"); // Redirect to cart page for regular users
+                }
                 exit;
             } else {
                 echo "Invalid username or password.";
