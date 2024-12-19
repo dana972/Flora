@@ -29,6 +29,7 @@ require '../config/config.php'; // Include your database connection
             width: 100%;
             border-collapse: collapse;
             margin-bottom: 20px;
+            overflow-x: auto; /* Enables horizontal scrolling */
         }
 
         table th, table td {
@@ -253,4 +254,3 @@ require '../config/config.php'; // Include your database connection
     ?>
 </body>
 </html>
-

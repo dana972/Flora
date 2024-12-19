@@ -5,11 +5,9 @@ require_once '../config/config.php';
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM products");
 $productsCount = $stmt->fetch()['total'];
 
-
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM orders");
 $ordersCount = $stmt->fetch()['total'];
 
-// Fetch stats dynamically
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM users");
 $usersCount = $stmt->fetch()['total'];
 ?>
@@ -21,7 +19,7 @@ $usersCount = $stmt->fetch()['total'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Admin Dashboard</title>
     <style>
-        body {
+           body {
             margin: 0;
             font-family: Arial, sans-serif;
             background-color: #F8F8F8;
@@ -139,19 +137,23 @@ $usersCount = $stmt->fetch()['total'];
 <body>
     <div class="navbar">
         <h1>Flora Admin Dashboard</h1>
-        <a href="logout.php"><button style="background-color: #F0C1E1; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; color: #fff; font-weight: bold;">Logout</button>
-    </a></div>
+        <a href="logout.php">
+            <button style="background-color: #F0C1E1; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; color: #fff; font-weight: bold;">Logout</button>
+        </a>
+    </div>
 
-    <div class="sidebar">
+    <div class="sidebar" id="sidebar">
         <ul>
-        <li><a href="manage_products.php">Manage Products</a></li>  
+            <li><a href="manage_products.php">Manage Products</a></li>
             <li><a href="manage_categories.php">Manage Categories</a></li>
             <li><a href="manage_users.php">Manage Users</a></li>
-            <li><a href="manage_orders.php">Manage orders</a></li>
+            <li><a href="manage_orders.php">Manage Orders</a></li>
+            <li><a href="manage_gallery.php">Manage Gallery</a></li>
+            <li><a href="view_messages.php">View Customer Messages</a></li>
         </ul>
     </div>
 
-    <div class="main-content">
+    <div class="main-content" id="main-content">
         <div class="card">
             <h2>Welcome, Admin!</h2>
             <p>Use the sidebar to navigate through the admin functionalities.</p>
@@ -162,7 +164,9 @@ $usersCount = $stmt->fetch()['total'];
             <p>Total Products: <?= $productsCount; ?></p>
             <p>Total Orders: <?= $ordersCount; ?></p>
             <p>Total Users: <?= $usersCount; ?></p>
-            </div>
+        </div>
     </div>
 </body>
 </html>
+
+
