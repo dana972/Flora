@@ -10,6 +10,9 @@ $ordersCount = $stmt->fetch()['total'];
 
 $stmt = $pdo->query("SELECT COUNT(*) as total FROM users");
 $usersCount = $stmt->fetch()['total'];
+
+$stmt = $pdo->query("SELECT COUNT(*) as total FROM contacts");
+$messagesCount = $stmt->fetch()['total'];
 ?>
 
 <!DOCTYPE html>
@@ -137,7 +140,7 @@ $usersCount = $stmt->fetch()['total'];
 <body>
     <div class="navbar">
         <h1>Flora Admin Dashboard</h1>
-        <a href="logout.php">
+        <a href="../pages/logout.php">
             <button style="background-color: #F0C1E1; border: none; padding: 0.5rem 1rem; border-radius: 4px; cursor: pointer; color: #fff; font-weight: bold;">Logout</button>
         </a>
     </div>
@@ -164,6 +167,8 @@ $usersCount = $stmt->fetch()['total'];
             <p>Total Products: <?= $productsCount; ?></p>
             <p>Total Orders: <?= $ordersCount; ?></p>
             <p>Total Users: <?= $usersCount; ?></p>
+            <p>Total Messages: <?= $messagesCount; ?></p>
+
         </div>
     </div>
 </body>

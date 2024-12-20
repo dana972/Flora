@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
                 // Check if the user is an admin and redirect accordingly
                 if ($user['role'] === 'admin') {
-                    header("Location: admin.php"); // Redirect to admin page
+                    header("Location: ../admin/admin.php"); // Redirect to admin page
                 } else {
                     header("Location: cart.php"); // Redirect to cart page for regular users
                 }
